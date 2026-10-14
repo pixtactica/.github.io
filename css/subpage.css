@@ -1,0 +1,324 @@
+/* ---------- ベース ---------- */
+@font-face {
+  font-family: "PixelMplus10-Regular";
+  src: url("../assets/fonts/PixelMplus10-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: #222;
+  background: #fff;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- ヘッダー ---------- */
+.site-header {
+  position: relative;
+  height: auto;
+  flex: 0 0 auto;
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 110;
+}
+
+.site-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  line-height: 0;
+}
+
+.site-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(60vw, 240px);
+  max-height: 4rem;
+  object-fit: contain;
+}
+
+/* ---------- ハンバーガー兼クローズボタン ---------- */
+.menu-toggle {
+  position: relative;
+  z-index: 130;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #222;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* バツ印に変形 */
+.menu-toggle.is-active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- ページタイトル ---------- */
+.page-title {
+  padding: 30px 3rem;
+  background: #e60012;
+  color: #fff;
+}
+
+.page-title h1 {
+  margin: 0;
+  text-align: center;
+  font-family: "PixelMplus10-Regular", monospace;
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+/* ---------- メインコンテンツ ---------- */
+.page-main {
+  flex: 1;
+  min-height: 20rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;   /* 縦に積む */
+  align-items: center;      /* 箱を横方向中央に（幅いっぱいにしたい場合は stretch） */
+  justify-content: flex-start; /* 上から順に詰める */
+  gap: 1rem;              /* 箱と箱の間隔 */
+  background-color: #fff;
+  background-image:
+    linear-gradient(to right, #f8f8ff 1px, transparent 1px),
+    linear-gradient(to bottom, #f8f8ff 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.main-placeholder {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;   /* 箱の中身も縦に積む場合 */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  flex-shrink: 0;  /* 文字が増えてもアイコンが縮まない */
+}
+/* ---------- フッター ---------- */
+.site-footer {
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.site-footer img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.site-footer p {
+  margin: 0.5rem 0;
+}
+
+/* ---------- オーバーレイ ---------- */
+.main_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.main_overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ---------- サブメニュー ---------- */
+#sub-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 240px;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 120;
+  background-color: #fff;
+  background-image:
+    linear-gradient(to right, #f8f8ff 1px, transparent 1px),
+    linear-gradient(to bottom, #f8f8ff 1px, transparent 1px);
+  background-size: 32px 32px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  border-left: 4px solid #222;
+  outline: 4px solid #222;
+  outline-offset: -4px;
+}
+
+#sub-nav.is-open {
+  transform: translateX(0);
+}
+
+#sub-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 7rem 1.5rem 2rem;
+  font-family: "PixelMplus10-Regular", monospace;
+  font-size: 1rem;
+}
+
+#sub-nav li {
+  margin: 0;
+}
+
+#sub-nav a {
+  display: block;
+  padding: 1rem 0;
+  color: #222;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+#sub-nav a:hover,
+#sub-nav a:focus-visible {
+  color: #999;
+}
+
+/* ---------- 工事中オーバーレイ ---------- */
+.construction-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.construction-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.construction-text {
+  margin: 0;
+  font-family: "PixelMplus10-Regular", monospace;
+  font-size: 1.25rem;
+  color: #fff;
+  pointer-events: none;
+  user-select: none;
+}
+
+.construction-char {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  image-rendering: pixelated;
+}
+
+/* ---------- 怒り吹き出し ---------- */
+.anger-bubble {
+  position: absolute;
+  top: -3rem;
+  right: -2rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.anger-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #ffffff;
+}
+
+.anger-bubble.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.anger-mark {
+  font-size: 1.5rem;
+  display: block;
+  line-height: 1;
+}
+
+/* ---------- スマートフォン ---------- */
+@media (max-width: 100rem) {
+  .site-header,
+  .page-title,
+  .page-main,
+  .site-footer {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}

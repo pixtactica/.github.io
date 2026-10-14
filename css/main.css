@@ -1,0 +1,84 @@
+@font-face {
+  font-family: "PixelMplus10-Regular";
+  src: url("../assets/fonts/PixelMplus10-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #000; color: #fff; }
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Desktop: height is the limit; panel stays at 7:5 (width:height). */
+.main_index {
+  position: relative;
+  isolation: isolate;
+  width: min(140dvh, calc(100vw - 112px));
+  height: min(100dvh, calc((100vw - 112px) * 5 / 7));
+  aspect-ratio: 5 / 7;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #000;
+}
+/* 最背面：背景エフェクト */
+#nebula {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;          /* -1 から -2 に変更 */
+  pointer-events: none;
+}
+
+/* 中間：薄い黒の全面オーバーレイ */
+.main_overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;          
+  background: rgba(0, 0, 0, 0.45);  
+  pointer-events: none; 
+}
+
+/* 前面：コンテンツ */
+.index_content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  padding: 5% 0;
+  position: relative;  
+  z-index: 0;          
+}
+.main_symbol { display: block; width: min(60%, 400px); height: auto; object-fit: contain; }
+#main-nav { font-family: "PixelMplus10-Regular", monospace; font-size: clamp(18px, 2vw, 25px); letter-spacing: .08em; }
+#main-nav ul { list-style: none; margin: 0; padding: 0; }
+#main-nav li { margin: .75em 0; text-align: center; }
+#main-nav a { position: relative; color: #fff; text-decoration: none; transition: color .15s; }
+#main-nav a::before { content: "▶"; position: absolute; right: calc(100% + .55em); opacity: 0; color: #999; }
+#main-nav a:hover, #main-nav a:focus-visible { color: #999; }
+#main-nav a:hover::before, #main-nav a:focus-visible::before { opacity: 1; }
+footer { position: relative; z-index: 1; padding: 0 1em 1.2em; text-align: center; font-size: clamp(8px, .8vw, 11px); color: #aaa; line-height: 1.8; }
+footer small { font-size: inherit; }
+
+
+@media (max-width: 100rem) {
+  body { align-items: center; }
+  .main_index { width: 100vw; height: 100dvh; aspect-ratio: auto; }
+  .main_symbol { width: min(80%, 400px); }
+  #main-nav { font-size: clamp(18px, 5vw, 24px); }
+  footer { font-size: 9px; padding-bottom: 2em; }
+}
+#main-nav a.vibrate { animation: vibrate .25s linear; }
+@keyframes vibrate { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 50% { transform: translateX(3px); } 75% { transform: translateX(-2px); } }
