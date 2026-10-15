@@ -34,9 +34,60 @@
     .construction-char.is-shaking {
       animation: shake 0.25s ease-in-out;
     }
+
+    /* X埋め込みの幅調整 */
+    .twitter-timeline {
+      max-width: 100%;
+    }
+
+    /* ツイッター埋め込みコンテナ */
+    .twitter-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* プレースホルダー */
+    .twitter-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      background: #1a1a2e;
+      border: 1px solid #3d3d5c;
+      border-radius: 12px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      gap: 1rem;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .twitter-placeholder.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    /* ピナー */
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #3d3d5c;
+      border-top-color: #00d1b2;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
-
 
 <body>
     <div class="page-wrapper">
@@ -61,18 +112,37 @@
         </header>
 
         <div class="page-title">
-            <h1>CONTACT</h1>
+            <h1>おといあわせ</h1>
         </div>
 
 <main class="page-main">
     <div class="main-placeholder">
-        <p>製品に関するお問い合わせ・ご相談については<br>下記メールアドレス宛にお願いいたします。<br>✉　pixtactica@gmail.com</p>
-    </div>
+        <p>製品に関するお問い合わせ・欠品・ご相談については<br>下記メールアドレス宛にお願いいたします。<br>[pixtactica@gmail.com]</p>
+<hr style="width:100%;border:none;border-top:1px solid #ccc;margin:1.5rem 0;">
+<p style="color: grey; text-align: left; display: inline-block; margin: 0 auto;">※欠品に関するご相談の際は下記情報をご記入の上、メールをお送りください。<br>
+件名：【欠品連絡】お名前 ピクステラ欠品についての連絡<br>
+　・お名前<br>
+　・ご連絡の取れるメールアドレス<br>
+　・ご購入日<br>
+　・ご購入イベント<br>
+　・欠品商品名(部品名)<br>
+　・お客様住所</p>
+</div>
+    <div class="main-placeholder">
+        <p>公式Xはこちら</p>
+
+        <div class="twitter-container">
+<a href="https://twitter.com/PIXTAC_official?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @PIXTAC_official</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+</div>
     <div class="main-placeholder">
         <p>その他『PIXSTELLA』に関するアンケートを実施しております。<br>今後の制作に活かすため、ご協力いただけますと幸いです。</p>
-        <div class="contact-row"><img src="assets/images/icon_kinoko.png" alt="" class="icon"><span>pixtactica@gmail.com</span></div>
+        <div class="contact-row">
+            <img src="assets/images/icon_footstep.png" alt="" class="icon">
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfds-ZZ6Qo2oNMKxr8H7KL8jyDxK2T6gph7GwvPeOSnlsC0Og/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" style="font-size: 1.2rem; color: #004cff; text-decoration: none;">アンケートに回答する</a>        </div>
     </div>
-    
 </main>
 
         <footer class="site-footer">
@@ -87,20 +157,17 @@
     <div class="main_overlay" id="main-overlay"></div>
 
     <nav id="sub-nav" aria-label="サブメニュー" aria-hidden="true">
-
-
         <ul>
             <li><a href="index.html">スタートメニュー</a></li>
             <span>------</span>
-            <li><a href="ABOUT.html">ABOUT</a></li>
+            <li><a href="ABOUT.html">ピクステラってなに？</a></li>
             <li><a href="HOW_TO_PLAY.html">あそびかた</a></li>
-            <li><a href="CONTACT.html">▶CONTACT</a></li>
+            <li><a href="CONTACT.html">おといあわせ◀</a></li>
+            <li><a href="QandA.html">おたすけ！ｽﾋﾟｶちゃん</a></li>
         </ul>
     </nav>
 
     <script src="js/sub-nav.js"></script>
 
 </body>
-
-
 </html>

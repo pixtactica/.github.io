@@ -4,7 +4,13 @@
   src: url("../assets/fonts/PixelMplus10-Regular.ttf") format("truetype");
   font-display: swap;
 }
-
+@font-face {
+  font-family: "NotoSansJP";
+  src: url("../assets/fonts/NotoSansJP-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 * {
   box-sizing: border-box;
 }
@@ -18,6 +24,8 @@ body {
 body {
   color: #222;
   background: #fff;
+  /* メインのフォントを Noto Sans 系に */
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
 .page-wrapper {
@@ -41,7 +49,7 @@ body {
 
 .site-logo {
   position: absolute;
-  left: 50%;
+  left: 12%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: block;
@@ -106,6 +114,7 @@ body {
 .page-title h1 {
   margin: 0;
   text-align: center;
+  /* PixelMplus を維持 */
   font-family: "PixelMplus10-Regular", monospace;
   font-size: 2rem;
   font-weight: normal;
@@ -117,10 +126,10 @@ body {
   min-height: 20rem;
   padding: 2rem;
   display: flex;
-  flex-direction: column;   /* 縦に積む */
-  align-items: center;      /* 箱を横方向中央に（幅いっぱいにしたい場合は stretch） */
-  justify-content: flex-start; /* 上から順に詰める */
-  gap: 1rem;              /* 箱と箱の間隔 */
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
   background-color: #fff;
   background-image:
     linear-gradient(to right, #f8f8ff 1px, transparent 1px),
@@ -134,7 +143,7 @@ body {
   min-height: 100px;
   padding: 1rem;
   display: flex;
-  flex-direction: column;   /* 箱の中身も縦に積む場合 */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -142,6 +151,7 @@ body {
   border-radius: 12px;
   background: #fff;
 }
+
 .contact-row {
   display: flex;
   align-items: center;
@@ -152,8 +162,9 @@ body {
   width: 25px;
   height: 25px;
   object-fit: contain;
-  flex-shrink: 0;  /* 文字が増えてもアイコンが縮まない */
+  flex-shrink: 0;
 }
+
 /* ---------- フッター ---------- */
 .site-footer {
   margin-top: 2rem;
@@ -220,6 +231,7 @@ body {
   list-style: none;
   margin: 0;
   padding: 7rem 1.5rem 2rem;
+  /* PixelMplus を維持 */
   font-family: "PixelMplus10-Regular", monospace;
   font-size: 1rem;
 }
@@ -262,6 +274,7 @@ body {
 
 .construction-text {
   margin: 0;
+  /* PixelMplus を維持 */
   font-family: "PixelMplus10-Regular", monospace;
   font-size: 1.25rem;
   color: #fff;
@@ -310,6 +323,8 @@ body {
   font-size: 1.5rem;
   display: block;
   line-height: 1;
+  /* PixelMplus を維持 */
+  font-family: "PixelMplus10-Regular", monospace;
 }
 
 /* ---------- スマートフォン ---------- */
