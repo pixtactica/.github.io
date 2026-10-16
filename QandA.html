@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>『PIXTELLA』公式サイト</title>
   <meta name="description" content="ボードゲーム『PIXTELLA』公式サイト">
-  <link rel="canonical" href="https://samujoh.neocities.org/">
+  <link rel="canonical" href="https://pixtactica.github.io/.github.io/">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 
   <meta property="og:title" content="ボードゲーム『PIXTELLA』公式サイト">
   <meta property="og:description" content="ボードゲーム『PIXTELLA』公式サイト">
-  <meta property="og:url" content="https://samujoh.neocities.org/">
+  <meta property="og:url" content="https://pixtactica.github.io/.github.io/">
   <meta property="og:site_name" content="PIXTELLA">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/images/logo_white.png">
@@ -33,6 +33,15 @@
     }
     .construction-char.is-shaking {
       animation: shake 0.25s ease-in-out;
+    }
+
+    /* 右寄り配置用のコンテナ */
+    .spica-container {
+        position: relative;
+        display: inline-block;
+        margin-left: auto;
+        margin-right: 20px;
+        width: fit-content;
     }
   </style>
 </head>
@@ -68,7 +77,17 @@
         <p>ゲームのルールに関する質問は、こちらからお寄せください。<br>
             ｽﾋﾟｶちゃんが、できるかぎりお答えします。<br>
         ※ご質問の内容によっては、回答にお時間をいただく場合がございます。あらかじめご了承ください。</p>
-<div class="contact-row"><img src="assets/images/icon_spicar.png" alt="" class="icon"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdoR8-NjV3Ppt4iqPrzgVGEG-kKayytfBFfqjbCzdWmI8MafQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" style="font-family:PixelMplus10-Regular; font-size: 1.2rem; color: #ff0000; text-decoration: none;">ここから相談する！</a></div>    </div>
+
+<div class="contact-row">
+    <img src="assets/images/icon_spicar.png" alt="" class="icon">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdoR8-NjV3Ppt4iqPrzgVGEG-kKayytfBFfqjbCzdWmI8MafQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" style="font-family:PixelMplus10-Regular; font-size: 1.2rem; color: #ff0000; text-decoration: none;">ここから相談する！</a>
+    
+    <!-- スピカちゃんのコンテナ（右寄り） -->
+    <div class="spica-container">
+        <img src="assets/images/spica_mini.png" alt="ｽﾋﾟｶだよー" class="construction-char" id="construction-char" style="display: block; width: 130px; max-width: 70%; height: auto; visibility: visible; opacity: 1; cursor: pointer;">
+    </div>
+</div>   
+ </div>
 </main>
 
         <footer class="site-footer">
@@ -83,8 +102,6 @@
     <div class="main_overlay" id="main-overlay"></div>
 
     <nav id="sub-nav" aria-label="サブメニュー" aria-hidden="true">
-
-
         <ul>
             <li><a href="index.html">スタートメニュー</a></li>
             <span>------</span>
@@ -96,8 +113,63 @@
     </nav>
 
     <script src="js/sub-nav.js"></script>
+    <script>
+    (function() {
+        const char = document.getElementById("construction-char");
 
+        let clickCount = 0;
+        let animTimer = null;
+
+        char.addEventListener("click", function(e) {
+            e.stopPropagation();
+            clickCount++;
+
+            // クリック時に一瞬振動
+            char.classList.remove("is-shaking");
+            void char.offsetWidth; // リフローしてアニメーションをリセット
+            char.classList.add("is-shaking");
+            setTimeout(function() {
+                char.classList.remove("is-shaking");
+            }, 250);
+
+            if (clickCount >= 5) {
+                startStopMotion();
+            }
+
+            clearTimeout(window._eggResetTimer);
+            window._eggResetTimer = setTimeout(function() {
+                clickCount = 0;
+                stopStopMotion();
+            }, 2000);
+        });
+
+        // ストップモーション風アニメーション（0.5秒ごと微妙に動く）
+        function startStopMotion() {
+            stopStopMotion();
+            let frame = 0;
+            const charOffsets = [
+                { x: 0, y: 0, r: 0 },
+                { x: -1, y: 1, r: 1 },
+                { x: 1, y: -1, r: -1 },
+                { x: 0, y: 0, r: 2 },
+                { x: 1, y: 1, r: -1 },
+                { x: -1, y: 0, r: 0 }
+            ];
+            animTimer = setInterval(function() {
+                frame = (frame + 1) % charOffsets.length;
+                const c = charOffsets[frame];
+                char.style.transform = "translate(" + c.x + "px, " + c.y + "px) rotate(" + c.r + "deg)";
+            }, 500);
+        }
+
+        function stopStopMotion() {
+            if (animTimer) {
+                clearInterval(animTimer);
+                animTimer = null;
+            }
+            char.style.transform = "";
+        }
+    })();
+    </script>
 </body>
-
-
 </html>
